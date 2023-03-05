@@ -16,6 +16,7 @@ app.set("view engine", "ejs");
 app.use("/", home); //미들웨어
 
 module.exports = app;
+//테스트
 
 
 

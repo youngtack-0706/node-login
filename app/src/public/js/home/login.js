@@ -1,1 +1,1 @@
-console.log("hello my script");
+console.log("hello my script");//ㅁㄴㅇ

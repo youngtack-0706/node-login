@@ -6,15 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- src/public/js/home의 파일을 바라봄. 설정은 app.js에서 express.static으로함 -->
-        <script src="/js/home/login.js"></script>
+        <script defer src="/js/home/login.js"></script>
         
         <title>Document</title>
     </head>
     <body>
-        <form action="">
-            <input type="text" placeholder="id"><br>
-            <input type="text" placeholder="password"><br>
-            <input type="button" value="login">
-        </form>
+        <input type="text" id="id" value="" placeholder="id"><br>
+        <input type="text" id="pw" value="" placeholder="password"><br>
+        <input type="button" id="loginBtn" value="login">
     </body>
 </html>

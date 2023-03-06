@@ -12,6 +12,8 @@ const home = require("./src/routes/home")//자동으로 index.js를 읽음(?)
 app.set("views", "./src/views");//뷰위치는 ./src/views에 있어 
 app.set("view engine", "ejs");//뷰 엔진은 ejs를 사용할께
 
+app.use(express.static(`${__dirname}/src/public`)); //__dirname => js위치에 파일의 이름, express statc=> 정적 경로 추가하는 함수 
+
 //라우팅 주소 연결
 app.use("/", home); //미들웨어
 

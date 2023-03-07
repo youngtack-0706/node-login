@@ -2,9 +2,35 @@ const id = document.querySelector("#id");
 const pw = document.querySelector("#pw");
 const loginBtn = document.querySelector("#loginBtn");
 
+
+id.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      login();
+    }
+});
+
+pw.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      login();
+    }
+});
+
 loginBtn.addEventListener("click", login);
 
 function login(){
+    console.log("id:"+id.value);
+    console.log("pw:"+pw.value);
+    if(id.value === "" || id.value === undefined || id.value === null){
+        document.getElementById("idChk").hidden = false;
+        document.getElementById("pwChk").hidden = true;
+        return;
+    }else if(pw.value === "" || pw.value === undefined || pw.value === null){
+        document.getElementById("idChk").hidden = true;
+        document.getElementById("pwChk").hidden = false;
+        return;
+    }
     const req = {
         id: id.value,
         pw: pw.value
@@ -23,10 +49,17 @@ function login(){
     .then((res) => res.json())
     .then((res) => {
         if(res.success){
-            
+            location.href = "/"
         }else{
-
+            document.getElementById("idChk").hidden = true;
+            document.getElementById("pwChk").hidden = true;
+            alert(res.msg);
         }
+    })
+    .catch((err) => {
+        // console.error(new Error("로그인 중 에러 발생"));
+        //위랑 같은 의미.
+        console.error("로그인 중 에러 발생");
     })
 }
 

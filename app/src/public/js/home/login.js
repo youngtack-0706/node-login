@@ -12,5 +12,13 @@ function login(){
     
     //제이슨 값을 출력하는 방법. 안하면 [object Object]라고 뜸
     console.log("req: "+JSON.stringify(req));
+
+    fetch("/login", {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(req)
+    })
 }
 

@@ -20,5 +20,13 @@ function login(){
         },
         body: JSON.stringify(req)
     })
+    .then((res) => res.json())
+    .then((res) => {
+        if(res.success){
+            
+        }else{
+
+        }
+    })
 }
 

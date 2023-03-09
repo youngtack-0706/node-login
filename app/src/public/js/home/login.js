@@ -1,6 +1,6 @@
 const id = document.querySelector("#id");
 const pw = document.querySelector("#pw");
-const loginBtn = document.querySelector("#loginBtn");
+const loginBtn = document.querySelector("#button");
 
 
 id.addEventListener("keyup", function (event) {

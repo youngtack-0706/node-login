@@ -7,7 +7,7 @@
 
         <link rel="stylesheet" href="/css/home/login.css">
         <!-- src/public/js/home의 파일을 바라봄. 설정은 app.js에서 express.static으로함 -->
-        <script defer src="/js/home/login.js"></script>
+        <script defer src="/js/home/register.js"></script>
         <title>Document</title>
     </head>
     <body>
@@ -22,11 +22,24 @@
                 </form> -->
                 <form class="login-form">
                     <input id="name" type="text" placeholder="이름"/>
+                    <div id="name-check" style="color:red" hidden="true">
+                        이름을 입력해주세요.
+                    </div>
                     <input id="id" type="text" placeholder="아이디"/>
+                    <div id="id-check" style="color:red" hidden="true">
+                        아이디를 입력해주세요.
+                    </div>
                     <input id="pw" type="password" placeholder="비밀번호"/>
+                    <div id="pw-check" style="color:red" hidden="true">
+                        비밀번호를 입력해주세요.
+                    </div>
                     <input id="confirm-pw" type="password" placeholder="비밀번호 확인"/>
+                    <div id="confirmPw-check" style="color:red" hidden="true">
+                        비밀번호 확인을 입력해주세요.
+                    </div>
                     <!-- <button id="loginBtn">login</button> -->
-                    <input type="button" id="loginBtn" value="SIGN UP">
+                    <!-- <input type="button" id="registerBtn" value="SIGN UP"> -->
+                    <p id="button">SIGN UP</p>
                     <p class="message">Already registered? <a href="/login">login</a></p>
                 </form>
             </div>

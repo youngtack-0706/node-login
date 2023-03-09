@@ -5,20 +5,38 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="stylesheet" href="/css/home/login.css">
         <!-- src/public/js/home의 파일을 바라봄. 설정은 app.js에서 express.static으로함 -->
         <script defer src="/js/home/login.js"></script>
-        
         <title>Document</title>
     </head>
     <body>
-        <input type="text" id="id" value="" placeholder="id"><br>
-        <div id="idChk" style="color:red" hidden="true">
-            아이디를 입력해주세요.
+        <div class="login-page">
+            <div class="form">
+                <!-- <form class="register-form">
+                    <input type="text" placeholder="name"/>
+                    <input type="password" placeholder="password"/>
+                    <input type="text" placeholder="email address"/>
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                </form> -->
+                <form class="login-form">
+                    <input id="id" type="text" placeholder="아이디"/>
+                    <div id="idChk" style="color:red" hidden="true">
+                        아이디를 입력해주세요.
+                    </div>
+                    <input id="pw" type="password" placeholder="비밀번호"/>
+                    <div id="pwChk" style="color:red" hidden="true">
+                        비밀번호를 입력해주세요.
+                    </div>
+                    <!-- <button id="loginBtn">login</button> -->
+                    <input type="button" id="loginBtn" value="login">
+                    <p class="message">Not registered? <a href="/register">Create an account</a></p>
+                </form>
+            </div>
         </div>
-        <input type="text" id="pw" value="" placeholder="password"><br>
-        <div id="pwChk" style="color:red" hidden="true">
-            비밀번호를 입력해주세요.
-        </div>
-        <input type="button" id="loginBtn" value="login">
     </body>
 </html>
+
+
+<!-- Copyright (c) 2023 by Aigars Silkalns (https://codepen.io/colorlib/pen/rxddKy) -->

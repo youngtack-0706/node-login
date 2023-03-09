@@ -13,7 +13,7 @@ const process = {
     login: (req, res) => {
         const user = new User(req.body); 
         const response = user.login();
-        // console.log("controller login response: ", response);
+        console.log("controller login response: ", response);
         
         return res.json(response);
 

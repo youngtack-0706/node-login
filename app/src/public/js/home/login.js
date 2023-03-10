@@ -33,7 +33,7 @@ function login(){
             var count = 0;
             for(var i=acc; i<loginInfo.length; i++){
                 document.getElementById(userInfo[i]+"-check").hidden = false;
-                curr.splice(1);  // eject early
+                curr.splice(acc);  // eject early
                 count = i+1;
             }
 

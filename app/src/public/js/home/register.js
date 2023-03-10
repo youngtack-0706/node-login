@@ -29,19 +29,8 @@ function register(){
     }
     console.log("req: "+JSON.stringify(req));
 
-    // Object.values(req).reduce((value, info) => {
-    //     if(info === "" || info === undefined || info=== null){
-    //         // document.getElementById("pwChk").hidden = true;
-    //         console.log("회원가입중 정보가 없음");
-    //         return;
-    //     }else{
-    //         // document.getElementById("pwChk").hidden = false;
-    //     }
-    // }, {});
-
-
     const registerInfo = ["name", "id", "pw", "confirmPw"];
-    
+
     registerInfo.reduce((newUsers, info, acc, curr) =>{
         if(!req[info]){
             const regiInfo = JSON.parse(JSON.stringify(registerInfo))
@@ -64,6 +53,11 @@ function register(){
             document.getElementById(info+"-check").hidden = true;
         }
     }, {})
+
+    if(!req.name || !req.id || !req.pw || !req.confirmPw){
+        return;
+    }
+
 
     //제이슨 값을 출력하는 방법. 안하면 [object Object]라고 뜸
 

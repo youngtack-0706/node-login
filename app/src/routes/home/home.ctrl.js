@@ -21,8 +21,6 @@ const process = {
         console.log("controller login response: ", response);
         
         return res.json(response);
-
-
         //밑에 코드는 User.js를 만들기전 만든 코드 
         // const id = req.body.id;
         // const pw = req.body.pw;
@@ -43,6 +41,13 @@ const process = {
         // response.success = false;
         // response.msg = "로그인 실패";
         // return res.json(response);
+    },
+    register: (req, res) =>{
+        const user = new User(req.body); 
+        const response = user.register();
+        console.log("controller register response: ", response);
+        
+        return res.json(response);
     }
 }
 

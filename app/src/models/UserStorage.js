@@ -29,6 +29,15 @@ class UserStorage {
 
         return userInfo;
     }
+
+    static save(userInfo){
+        const users = this.#tmp;
+        users.id.push(userInfo.id);
+        users.pw.push(userInfo.pw);
+        users.name.push(userInfo.name);
+
+        return {success: true};
+    }
 }
 
 

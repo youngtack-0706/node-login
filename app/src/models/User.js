@@ -17,6 +17,11 @@ class User {
             return {success: false, msg: "아이디가 없음"}
         }
     }
+
+    register(){
+        const response = UserStorage.save(this.body);
+        return response;
+    }
 }
 
 module.exports = User;

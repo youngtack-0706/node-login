@@ -25,8 +25,9 @@ function register(){
         name: name.value,
         id: id.value,
         pw: pw.value,
-        confirmPw: confirmPw.value,
+        confirmPw: confirmPw.value,//서버엔 안줘도 되지만 프론트처리때문에 넣어둠. 나중에 수정 해야함
     }
+
     console.log("req: "+JSON.stringify(req));
 
     const registerInfo = ["name", "id", "pw", "confirmPw"];
@@ -54,10 +55,22 @@ function register(){
         }
     }, {})
 
-    if(!req.name || !req.id || !req.pw || !req.confirmPw){
+
+    
+    
+    //값이 비어있으면 함수 실행x
+    if(!name.value || !id.value || !pw.value || !confirmPw.value){
         return;
     }
-
+    
+    console.log("pw", pw.value)
+    console.log("confirmPw", confirmPw.value)
+    if(pw.value != confirmPw.value){
+        document.getElementById("pw-check").hidden = true;
+        document.getElementById("confirmPw-check").hidden = true;
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+    }
 
     //제이슨 값을 출력하는 방법. 안하면 [object Object]라고 뜸
 

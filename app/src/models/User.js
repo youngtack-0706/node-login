@@ -18,9 +18,13 @@ class User {
         }
     }
 
-    register(){
-        const response = UserStorage.save(this.body);
-        return response;
+    async register(){
+        try{
+            const response = await UserStorage.save(this.body);
+            return response;
+        }catch(err){
+            return {success: false, msg: err};
+        }
     }
 }
 

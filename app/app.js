@@ -4,6 +4,9 @@
 //모듈
 const express = require("express");
 // const bodyParser = require("body-parser")//request의 값을 확인하기 위한 모듈
+
+const dotenv = require("dotenv");
+dotenv.config();
 const app = express();
 
 //라우팅

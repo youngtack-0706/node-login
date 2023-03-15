@@ -1,10 +1,10 @@
 const mysql = require("mysql")
 
 const db = mysql.createConnection({
-    host: "업로드용으로 가림",
-    user: "admin",
-    password: "qlslfn1234!",
-    database: "node_login"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABSE,
 });
 
 db.connect();

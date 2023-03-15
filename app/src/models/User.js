@@ -19,7 +19,7 @@ class User {
                 return {success: false, msg: "아이디가 없음"}
             }
         }catch(err){
-            console.log(err);
+            return {success: false, msg: err}
         }
     }
 

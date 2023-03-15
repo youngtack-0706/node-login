@@ -5,34 +5,34 @@ const { writeFile } = require("fs");
 const db = require("../config/db")
 
 class UserStorage {
-    static #getUserInfo(data, id){
-        const users = JSON.parse(data);
-        const idx = users.id.indexOf(id);
-        const usersKeys = Object.keys(users);
-        const userInfo = usersKeys.reduce((newUser, info) => {
-            newUser[info] = users[info][idx];
-            return newUser;
-        }, {})
+    // static #getUserInfo(data, id){
+    //     const users = JSON.parse(data);
+    //     const idx = users.id.indexOf(id);
+    //     const usersKeys = Object.keys(users);
+    //     const userInfo = usersKeys.reduce((newUser, info) => {
+    //         newUser[info] = users[info][idx];
+    //         return newUser;
+    //     }, {})
 
-        return userInfo;
-    }
+    //     return userInfo;
+    // }
 
-    static #getUsers(data, isAll, fileds){
-        const users = JSON.parse(data)
+    // static #getUsers(data, isAll, fileds){
+    //     const users = JSON.parse(data)
 
-        if(isAll){
-            return users;
-        }
-        const newUsers = fileds.reduce((newUsers, filed) =>{
-            if(users.hasOwnProperty(filed)){
-                newUsers[filed] = users[filed]; 
-            }
+    //     if(isAll){
+    //         return users;
+    //     }
+    //     const newUsers = fileds.reduce((newUsers, filed) =>{
+    //         if(users.hasOwnProperty(filed)){
+    //             newUsers[filed] = users[filed]; 
+    //         }
 
-            return newUsers;
-        }, {})
+    //         return newUsers;
+    //     }, {})
 
-        return newUsers;
-    }
+    //     return newUsers;
+    // }
 
     static getUsers(isAll, ...fileds) {
         // return fs.readFile("./src/databases/users.json")
@@ -46,7 +46,8 @@ class UserStorage {
 
     static getUserInfo(id){
         return new Promise((resovle, reject) => {
-            db.query("SELECT * FROM users WHERE id = ?", [id], (err, data) =>{
+            const query = "SELECT * FROM users WHERE id = ?;" 
+            db.query(query, [id], (err, data) =>{
                 if(err){
                     reject(err);
                 }else{
@@ -64,6 +65,19 @@ class UserStorage {
     }
 
     static async save(userInfo){
+        console.log(userInfo);
+        return new Promise((resovle, reject) => {
+            const query = "INSERT INTO users(name, id, pw) VALUES(?, ?, ?);" 
+            db.query(query,
+                [userInfo.name, userInfo.id, userInfo.pw],
+                (err) =>{
+                if(err){
+                    reject(`${err}`);
+                }else{
+                    resovle({success: true});
+                }
+            })
+        });
         // const users = await this.getUsers(true);
         // if(users.id.includes(userInfo.id)){
         //     throw "이미 존재하는 아이디입니다.";

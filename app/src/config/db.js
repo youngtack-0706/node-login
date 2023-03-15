@@ -1,7 +1,7 @@
 const mysql = require("mysql")
 
 const db = mysql.createConnection({
-    host: "node-login.caocid6om0g1.ap-northeast-2.rds.amazonaws.com",
+    host: "업로드용으로 가림",
     user: "admin",
     password: "qlslfn1234!",
     database: "node_login"

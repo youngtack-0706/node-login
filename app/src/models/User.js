@@ -7,14 +7,19 @@ class User {
 
     async login(){
         const body = this.body;
-        const {id , pw} = await UserStorage.getUserInfo(body.id);
-        if(id){
-            if(body.id === id && body.pw === pw){
-                return {success: true};
+        try{
+
+            const {id , pw} = await UserStorage.getUserInfo(body.id);
+            if(id){
+                if(body.id === id && body.pw === pw){
+                    return {success: true};
+                }
+                return {success: false, msg: "비밀번호가 틀림"}
+            }else{
+                return {success: false, msg: "아이디가 없음"}
             }
-            return {success: false, msg: "비밀번호가 틀림"}
-        }else{
-            return {success: false, msg: "아이디가 없음"}
+        }catch(err){
+            console.log(err);
         }
     }
 

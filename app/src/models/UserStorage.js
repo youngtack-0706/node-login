@@ -1,7 +1,8 @@
 const { writeFile } = require("fs");
 
-const fs = require("fs").promises;
+// const fs = require("fs").promises;
 
+const db = require("../config/db")
 
 class UserStorage {
     static #getUserInfo(data, id){
@@ -34,36 +35,45 @@ class UserStorage {
     }
 
     static getUsers(isAll, ...fileds) {
-        return fs.readFile("./src/databases/users.json")
-        .then((data) =>{
-            return this.#getUsers(data, isAll, fileds);
-        })
-        .catch(
-            console.error
-        );
+        // return fs.readFile("./src/databases/users.json")
+        // .then((data) =>{
+        //     return this.#getUsers(data, isAll, fileds);
+        // })
+        // .catch(
+        //     console.error
+        // );
     }
 
     static getUserInfo(id){
-        return fs.readFile("./src/databases/users.json")
-            .then((data) =>{
-                return this.#getUserInfo(data, id);
+        return new Promise((resovle, reject) => {
+            db.query("SELECT * FROM users WHERE id = ?", [id], (err, data) =>{
+                if(err){
+                    reject(err);
+                }else{
+                    resovle(data[0]);
+                }
             })
-            .catch(
-                console.error
-            );
+        });
+        // return fs.readFile("./src/databases/users.json")
+        //     .then((data) =>{
+        //         return this.#getUserInfo(data, id);
+        //     })
+        //     .catch(
+        //         console.error
+        //     );
     }
 
     static async save(userInfo){
-        const users = await this.getUsers(true);
-        if(users.id.includes(userInfo.id)){
-            throw "이미 존재하는 아이디입니다.";
-        }
+        // const users = await this.getUsers(true);
+        // if(users.id.includes(userInfo.id)){
+        //     throw "이미 존재하는 아이디입니다.";
+        // }
         
-        users.id.push(userInfo.id);
-        users.pw.push(userInfo.pw);
-        users.name.push(userInfo.name);
-        fs.writeFile("./src/databases/users.json", JSON.stringify(users));
-        return {success: true};
+        // users.id.push(userInfo.id);
+        // users.pw.push(userInfo.pw);
+        // users.name.push(userInfo.name);
+        // fs.writeFile("./src/databases/users.json", JSON.stringify(users));
+        // return {success: true};
     }
 }
 

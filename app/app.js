@@ -8,7 +8,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
 
-var morgan = require('morgan')
+// var morgan = require('morgan')
 
 const app = express();
 
@@ -31,9 +31,11 @@ app.use(express.static(`${__dirname}/src/public`)); //__dirname => js위치에 �
 //express 4.16.0버전 이상 부터는 이렇게 사용해도 request값 확인가능
 app.use(express.json());
 
-app.use(
-    morgan('common', {stream : accessLogStream})
-);
+
+//morgan을 이용한 로그관리
+// app.use(
+//     morgan('common', {stream : accessLogStream})
+// );
 
 //라우팅 주소 연결
 app.use("/", home); //미들웨어

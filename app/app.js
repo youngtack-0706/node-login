@@ -9,13 +9,14 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // var morgan = require('morgan')
+// var logger = require('./src/config/logger')
 
 const app = express();
 
 //라우팅
 const home = require("./src/routes/home")//자동으로 index.js를 읽음(?)
 
-const accessLogStream = require("./src/config/log");
+// const accessLogStream = require("./src/config/log");
 
 
 //화면 설정
@@ -32,9 +33,9 @@ app.use(express.static(`${__dirname}/src/public`)); //__dirname => js위치에 �
 app.use(express.json());
 
 
-//morgan을 이용한 로그관리
+//winston+morgan을 이용한 로그관리
 // app.use(
-//     morgan('common', {stream : accessLogStream})
+//     morgan('tiny', {stream : logger.stream})
 // );
 
 //라우팅 주소 연결

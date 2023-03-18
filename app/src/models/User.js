@@ -19,7 +19,7 @@ class User {
                 return {success: false, msg: "아이디가 없음"}
             }
         }catch(err){
-            return {success: false, msg: err}
+            return {success: false, err}
         }
     }
 
@@ -28,7 +28,7 @@ class User {
             const response = await UserStorage.save(this.body);
             return response;
         }catch(err){
-            return {success: false, msg: err};
+            return {success: false, err};
         }
     }
 }

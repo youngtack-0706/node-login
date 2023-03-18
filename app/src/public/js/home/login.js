@@ -68,7 +68,12 @@ function login(){
         if(res.success){
             location.href = "/"
         }else{
-            alert(res.msg);
+            console.log(res);
+            if(res.err){
+                alert(res.err);
+            }else{
+                alert(res.msg);
+            }
         }
     })
     .catch((err) => {

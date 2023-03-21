@@ -51,16 +51,7 @@ class UserStorage {
                 if(err){
                     reject(`${err}`);
                 }else{
-                    if(data[0]){
-                        resovle(data[0]);
-                    }else{
-                        resovle(
-                            {
-                                id: undefined,
-                                pw: undefined,
-                            }
-                        )
-                    }
+                    resovle(data[0]);
                 }
             })
         });

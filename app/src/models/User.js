@@ -9,9 +9,9 @@ class User {
         const body = this.body;
         try{
 
-            const {id , pw} = await UserStorage.getUserInfo(body.id);
-            if(id){
-                if(body.id === id && body.pw === pw){
+            const user = await UserStorage.getUserInfo(body.id);
+            if(user){
+                if(body.id === user.id && body.pw === user.pw){
                     return {success: true};
                 }
                 return {success: false, msg: "비밀번호가 틀림"}

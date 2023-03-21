@@ -46,12 +46,21 @@ class UserStorage {
 
     static getUserInfo(id){
         return new Promise((resovle, reject) => {
-            const query = "SELECT * FROM abcd WHERE id = ?;" 
+            const query = "SELECT * FROM users WHERE id = ?;" 
             db.query(query, [id], (err, data) =>{
                 if(err){
                     reject(`${err}`);
                 }else{
-                    resovle(data[0]);
+                    if(data[0]){
+                        resovle(data[0]);
+                    }else{
+                        resovle(
+                            {
+                                id: undefined,
+                                pw: undefined,
+                            }
+                        )
+                    }
                 }
             })
         });
@@ -67,7 +76,7 @@ class UserStorage {
     static async save(userInfo){
         console.log(userInfo);
         return new Promise((resovle, reject) => {
-            const query = "INSERT INTO abcd(name, id, pw) VALUES(?, ?, ?);" 
+            const query = "INSERT INTO users(name, id, pw) VALUES(?, ?, ?);" 
             db.query(query,
                 [userInfo.name, userInfo.id, userInfo.pw],
                 (err) =>{

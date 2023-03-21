@@ -21,14 +21,16 @@ const process = {
     login: async (req, res) => {
         const user = new User(req.body); 
         const response = await user.login();
-        if(response.err){
-            logger.error(`POST /login 200  Response: "success: ${response.success}, ${response.err}"`)    
-        }else{
-            logger.info(`POST /login 200  Response: "success: ${response.success}, msg: ${response.msg}"`)
+        const url = {
+            method: "POST",
+            path: "/login",
+            status: response.err? 400 : 200,
         }
+
+        log(response, url);
         // console.log("controller login response: ", response);
         
-        return res.json(response);
+        return res.status(url.status).json(response);
         //밑에 코드는 User.js를 만들기전 만든 코드 
         // const id = req.body.id;
         // const pw = req.body.pw;
@@ -50,22 +52,33 @@ const process = {
         // response.msg = "로그인 실패";
         // return res.json(response);
     },
+    
     register: async (req, res) =>{
         const user = new User(req.body); 
         const response = await user.register();
-        if(response.err){
-            logger.error(`POST /register 200  Response: "success: ${response.success}, ${response.err}"`)    
-        }else{
-            logger.info(`POST /register 200  Response: "success: ${response.success}, msg: ${response.msg}"`)
+        const url = {
+            method: "POST",
+            path: "/register",
+            status: response.err? 400 : 200,
         }
+        
+        log(response, url);
        
         // console.log("controller register response: ", response);
         
-        return res.json(response);
+        return res.status(url.status).json(response);
     }
 }
 
 module.exports = {
     output,
     process,
+}
+
+const log = (response, url) => {
+    if(response.err){
+        logger.error(`${url.method} ${url.path} ${url.status} Response: ${response.success}, ${response.err}`)    
+    }else{
+        logger.info(`${url.method} ${url.path} ${url.status} Response: ${response.success}, ${response.msg || ""}`)    
+    }
 }
